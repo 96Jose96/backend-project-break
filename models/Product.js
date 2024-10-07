@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CardSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
     name: String,
     description: String,
     image: String,
@@ -9,6 +9,6 @@ const CardSchema = new mongoose.Schema({
     price: Number
 }, { timestamps: true });
 
-const Card = mongoose.model('Card', CardSchema);
+const Product = mongoose.model('Product', ProductSchema);
 
-module.exports = Card
+module.exports = Product

@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
 require('dotenv').config()
-const router = require('./routes/productRoutes')
+const router = require('./routes/productRoutes');
+const dbConnection = require('./config/db');
+
+app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }))
 //app.use(express.static('public'))
 
 app.use('/', router)
+
+dbConnection()
 
 app.listen(process.env.PORT, () => console.log(`Server on port: ${process.env.PORT}`))
