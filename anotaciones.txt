@@ -1,3 +1,4 @@
 el metodo override se necesita para poder hacer put y delete desde un formulario
 HTML. Es una dependencia que hay que instalar
 
+ver multer para las imagenes
