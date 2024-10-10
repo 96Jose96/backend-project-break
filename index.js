@@ -1,18 +1,18 @@
 const express = require('express');
 const app = express();
-require('dotenv').config()
+require('dotenv').config();
 const router = require('./routes/productRoutes');
 const dbConnection = require('./config/db');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
-app.use(express.json())
-app.use(methodOverride('_method'))
+app.use(express.json());
+app.use(methodOverride('_method'));
 
-app.use(express.urlencoded({ extended: true }))
-//app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }));
+//app.use(express.static('public'));
 
-app.use('/', router)
+app.use('/', router);
 
-dbConnection()
+dbConnection();
 
-app.listen(process.env.PORT, () => console.log(`Server on port: ${process.env.PORT}`))
+app.listen(process.env.PORT, () => console.log(`Server on port: ${process.env.PORT}`));

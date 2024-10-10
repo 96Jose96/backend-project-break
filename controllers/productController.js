@@ -1,38 +1,38 @@
-const Product = require('../models/Product')
+const Product = require('../models/Product');
 
 const ProductDashboardController = {
     async create (req, res) {
         try {
-            const newProduct = await Product.create(req.body)
-            res.status(201).json(newProduct)
+            const newProduct = await Product.create(req.body);
+            res.status(201).json(newProduct);
         } catch (error) {
-            console.error('Product create FAILED')
-        }
+            console.error('Product create FAILED');
+        };
     },
 
-    async getDashboardProducts (req, res) {
+    async getDashboardProducts (req, res) { //añadir que al clickar en uno nos lleva a su pagina para poder eliminarlo o editarlo
         try {
-            const products = await Product.find()
-            res.status(200).json(products)
+            const products = await Product.find();
+            res.status(200).json(products);
         } catch (error) {
-            console.error('Get all products FAILED')
-        }
+            console.error('Get all products FAILED');
+        };
     },
 
     async getDashboardProductById (req, res) {
         try {
-            const { productId } = req.params
-            const productById = await Product.findById(productId)
-            res.status(200).json(productById)
+            const { productId } = req.params;
+            const productById = await Product.findById(productId);
+            res.status(200).json(productById);
         } catch (error) {
-            console.error('Get product by id FAILED')
-        }
+            console.error('Get product by id FAILED');
+        };
     },
 
     async updateDashboardProductById (req, res) {
         try {
-            const { productId } = req.params
-            const { name, description, image, category, size, price } = req.body
+            const { productId } = req.params;
+            const { name, description, image, category, size, price } = req.body;
             const updatedProduct = await Product.findByIdAndUpdate(
                 productId,
                 {
@@ -44,22 +44,22 @@ const ProductDashboardController = {
                     price
                 },
                 { new: true }
-            )
+            );
             
-            res.status(200).json(updatedProduct)
+            res.status(200).json(updatedProduct);
         } catch (error) {
-            console.error('Get product by id FAILED')
-        }
+            console.error('Get product by id FAILED');
+        };
     },
 
     async deleteDashboardProduct (req, res) {
         try {
-            const { productId } = req.params
-            const deletedProduct = await Product.findByIdAndDelete(productId)
-            res.status(200).json(deletedProduct)
+            const { productId } = req.params;
+            const deletedProduct = await Product.findByIdAndDelete(productId);
+            res.status(200).json(deletedProduct);
         } catch (error) {
-            console.error('Delete product FAILED')
-        }
+            console.error('Delete product FAILED');
+        };
     },
 
     async newProductForm (req,res) {
@@ -98,16 +98,16 @@ const ProductDashboardController = {
                     </main>
                 </body>
                 </html>`
-            )
+            );
         } catch (error) {
-            console.error('Get createform FAILED')
-        }
+            console.error('Get createform FAILED');
+        };
     },
 
     async updateProductForm (req,res) {
         try {
-            const { productId } = req.params
-            const updateProduct = await Product.findById(productId)
+            const { productId } = req.params;
+            const updateProduct = await Product.findById(productId);
 
             res.send (
                 `<!DOCTYPE html>
@@ -145,11 +145,32 @@ const ProductDashboardController = {
                     </main>
                 </body>
                 </html>`
-            )
+            );
         } catch (error) {
-            console.error('Get updateform FAILED')
-        }
+            console.error('Get updateform FAILED');
+        };
     }
 }
 
-module.exports = ProductDashboardController;
+const ProductController = {
+    async getProducts (req, res) {
+        try {
+            const products = await Product.find();
+            res.status(200).json(products);
+        } catch (error) {
+            console.error('Get all products FAILED');
+        };
+    },
+
+    async getProductById (req, res) {
+        try {
+            const { productId } = req.params;
+            const productById = await Product.findById(productId);
+            res.status(200).json(productById);
+        } catch (error) {
+            console.error('Get product by id FAILED');
+        };
+    }
+}
+
+module.exports = { ProductDashboardController, ProductController };
