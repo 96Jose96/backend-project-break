@@ -1,9 +1,9 @@
-const Product = require('../models/Product');
+const Product = require('../models/Product')
 
 const ProductDashboardController = {
     async create (req, res) {
         try {
-            const newProduct = await Product.create(req.body);
+            const newProduct = await Product.create(req.body)
             res.send(
                 `<!DOCTYPE html>
                 <html lang="es">
@@ -21,11 +21,11 @@ const ProductDashboardController = {
                 </html>`
             );
         } catch (error) {
-            console.error('Product create FAILED');
+            console.error('Product create FAILED')
         };
     },
 
-    async getDashboardProducts (req, res) { //añadir que al clickar en uno nos lleva a su pagina para poder eliminarlo o editarlo
+    async getDashboardProducts (req, res) {
         try {
             const products = await Product.find();
     
@@ -35,7 +35,7 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Create Product</title>
+                    <title>Gestionar Productos</title>
                 </head>
                 <body>
                     <header>
@@ -66,7 +66,7 @@ const ProductDashboardController = {
                             <p>${product.description}</p>
                             <div id="cardButtons" class="cardButtons">
                                 <button class="updateBtn" onclick="window.location.href='/dashboard/${product._id}/edit'">Modificar</button>
-                                <button class="deleteBtn" onclick="window.Location.href='/dashboard/${product._id}'">Eliminar</button>
+                                <button class="deleteBtn" onclick="deleteProduct('${product._id}')">Eliminar</button>
                             </div>
                         </div>
                     </li>
@@ -77,21 +77,42 @@ const ProductDashboardController = {
                             </ul>
                         </section>
                     </main>
+    
+                    <script>
+                        async function deleteProduct(productId) {
+                            const confirmation = confirm("¿Seguro que deseas eliminar este producto?");
+                            if (confirmation) {
+                                try {
+                                    const response = await fetch('/dashboard/' + productId, {
+                                        method: 'DELETE'
+                                    });
+                                    if (response.ok) {
+                                        alert('Producto eliminado correctamente.');
+                                        window.location.reload();
+                                    }
+                                } catch (error) {
+                                    console.error('Error al eliminar el producto:', error);
+                                    alert('Error al intentar eliminar el producto.');
+                                }
+                            }
+                        }
+                    </script>
                 </body>
                 </html>
             `;
     
             res.send(html);
-
         } catch (error) {
-            console.error('Get all products FAILED');
-        };
+            console.error('Error al obtener productos:', error);
+            res.status(500).send("Error del servidor");
+        }
     },
+    
 
     async getDashboardProductById (req, res) {
         try {
             const { productId } = req.params;
-            const productById = await Product.findById(productId);
+            const productById = await Product.findById(productId)
 
             let html = `
                 <!DOCTYPE html>
@@ -103,9 +124,6 @@ const ProductDashboardController = {
                 </head>
                 <body>
                     <header>
-                        <nav>
-                            <input type="search" id="searchInput" class="searchInput" placeholder="Buscar..." />
-                        </nav>
                         <button type="submit">Login</button>
                     </header>
                     <main>
@@ -126,13 +144,13 @@ const ProductDashboardController = {
                                         <p>${productById.description}</p>
                                         <div id="cardButtons" class="cardButtons"></div>
                                     </div>
-                            </li>
+                                </li>
                             </ul>
                         </section>
                     </main>
                 </body>
                 </html>
-            `;
+            `
 
             res.send(html)
 
@@ -144,7 +162,7 @@ const ProductDashboardController = {
     async updateDashboardProductById (req, res) {
         try {
             const { productId } = req.params;
-            const { name, description, image, category, size, price } = req.body;
+            const { name, description, image, category, size, price } = req.body
             const updatedProduct = await Product.findByIdAndUpdate(
                 productId,
                 {
@@ -158,37 +176,55 @@ const ProductDashboardController = {
                 { new: true }
             );
             
-            res.status(200).json(updatedProduct);
-        } catch (error) {
-            console.error('Get product by id FAILED');
-        };
-    },
-
-    async deleteDashboardProduct (req, res) {
-        try {
-            const { productId } = req.params;
-            const deletedProduct = await Product.findByIdAndDelete(productId);
-            
             res.send(
                 `<!DOCTYPE html>
                 <html lang="es">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <meta http-equiv="refresh" content="2;url=/dashboard">
-                    <title>Deleted Product</title>
+                    <meta http-equiv="refresh" content="3;url=/dashboard">
+                    <title>Create Product</title>
                 </head>
                 <body>
                     <main>
-                        <p>Producto borrado corréctamente</p>
+                        <p>Producto modificado corréctamente</p>
+                        <ul id="productsList" class="productsList">
+                                <li>
+                                    <div id="card" class="card">
+                                        <div id="mainData" class="mainData">
+                                            <img src="" alt="${updatedProduct.name}">
+                                            <div id="primaryData" class="primaryData">
+                                                ${updatedProduct.name}<br>
+                                                Categoría: ${updatedProduct.category} <br>
+                                                Talla: ${updatedProduct.size} <br>
+                                                ID: ${updatedProduct._id} <br>
+                                                ${updatedProduct.price}€ IVA incluido.
+                                            </div>
+                                        </div>
+                                        <p>${updatedProduct.description}</p>
+                                        <div id="cardButtons" class="cardButtons"></div>
+                                    </div>
+                                </li>
+                            </ul>
                     </main>
                 </body>
                 </html>`
-            );
+            )
+        } catch (error) {
+            console.error('Update product FAILED')
+        }
+    },
+
+    async deleteDashboardProduct (req, res) {
+        try {
+            const { productId } = req.params
+            const deletedProduct = await Product.findByIdAndDelete(productId)
+            
+            res.status(200).json('Product deleted OK')
 
         } catch (error) {
-            console.error('Delete product FAILED');
-        };
+            console.error('Delete product FAILED')
+        }
     },
 
     async newProductForm (req,res) {
@@ -227,16 +263,16 @@ const ProductDashboardController = {
                     </main>
                 </body>
                 </html>`
-            );
+            )
         } catch (error) {
-            console.error('Get createform FAILED');
-        };
+            console.error('Get createform FAILED')
+        }
     },
 
     async updateProductForm (req,res) {
         try {
-            const { productId } = req.params;
-            const updateProduct = await Product.findById(productId);
+            const { productId } = req.params
+            const updateProduct = await Product.findById(productId)
 
             res.send (
                 `<!DOCTYPE html>
@@ -284,7 +320,7 @@ const ProductDashboardController = {
 const ProductController = {
     async getProducts(req, res) {
         try {
-            const products = await Product.find();
+            const products = await Product.find()
     
             let html = `
                 <!DOCTYPE html>
@@ -292,19 +328,16 @@ const ProductController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Create Product</title>
+                    <title>Product</title>
                 </head>
                 <body>
                     <header>
-                        <nav>
-                            <input type="search" id="searchInput" class="searchInput" placeholder="Buscar..." />
-                        </nav>
                         <button type="submit">Login</button>
                     </header>
                     <main>
                         <section>
                             <ul id="productsList" class="productsList">
-            `;
+            `
     
             products.forEach(product => {
                 html += `
@@ -326,8 +359,8 @@ const ProductController = {
                             </div>
                         </div>
                     </li>
-                `;
-            });
+                `
+            })
     
             html += `
                             </ul>
@@ -335,21 +368,21 @@ const ProductController = {
                     </main>
                 </body>
                 </html>
-            `;
+            `
     
-            res.send(html);
+            res.send(html)
     
         } catch (error) {
-            console.error('Get all products FAILED', error);
-            res.status(500).send('Error retrieving products');
+            console.error('Get all products FAILED', error)
+            res.status(500).send('Error retrieving products')
         }
     },
     
 
     async getProductById (req, res) {
         try {
-            const { productId } = req.params;
-            const productById = await Product.findById(productId);
+            const { productId } = req.params
+            const productById = await Product.findById(productId)
 
             let html = `
                 <!DOCTYPE html>
@@ -357,7 +390,7 @@ const ProductController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Create Product</title>
+                    <title>Product</title>
                 </head>
                 <body>
                     <header>
@@ -390,12 +423,12 @@ const ProductController = {
                     </main>
                 </body>
                 </html>
-            `;
+            `
 
             res.send(html)
         } catch (error) {
-            console.error('Get product by id FAILED');
-        };
+            console.error('Get product by id FAILED')
+        }
     }
 }
 
