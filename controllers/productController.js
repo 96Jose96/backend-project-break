@@ -3,7 +3,14 @@ const Product = require('../models/Product')
 const ProductDashboardController = {
     async create (req, res) {
         try {
-            const newProduct = await Product.create(req.body)
+            const newProduct = await Product.create({ 
+                name: req.body.name,
+                description: req.body.description,
+                image: req.file.filename,
+                category: req.body.category,
+                size: req.body.size,
+                proce: req.body.price
+             })
             res.send(
                 `<!DOCTYPE html>
                 <html lang="es">
@@ -22,6 +29,7 @@ const ProductDashboardController = {
             );
         } catch (error) {
             console.error('Product create FAILED')
+            res.status(500).send("Server error")
         };
     },
 
@@ -39,9 +47,6 @@ const ProductDashboardController = {
                 </head>
                 <body>
                     <header>
-                        <nav>
-                            <input type="search" id="searchInput" class="searchInput" placeholder="Buscar..." />
-                        </nav>
                         <button type="submit">Login</button>
                     </header>
                     <main>
@@ -54,7 +59,7 @@ const ProductDashboardController = {
                     <li>
                         <div id="card" class="card">
                             <div id="mainData" class="mainData">
-                                <img src="" alt="${product.name}">
+                                <img src="/images/${product.image}" alt="${product.name}" width="200" />
                                 <div id="primaryData" class="primaryData">
                                     ${product.name}<br>
                                     Categoría: ${product.category} <br>
@@ -80,7 +85,7 @@ const ProductDashboardController = {
     
                     <script>
                         async function deleteProduct(productId) {
-                            const confirmation = confirm("¿Seguro que deseas eliminar este producto?");
+                            const confirmation = confirm("¿Desea eliminar este producto?");
                             if (confirmation) {
                                 try {
                                     const response = await fetch('/dashboard/' + productId, {
@@ -91,8 +96,8 @@ const ProductDashboardController = {
                                         window.location.reload();
                                     }
                                 } catch (error) {
-                                    console.error('Error al eliminar el producto:', error);
-                                    alert('Error al intentar eliminar el producto.');
+                                    console.error('Delete product FAILED', error);
+                                    alert('Error al eliminar el producto.');
                                 }
                             }
                         }
@@ -103,8 +108,8 @@ const ProductDashboardController = {
     
             res.send(html);
         } catch (error) {
-            console.error('Error al obtener productos:', error);
-            res.status(500).send("Error del servidor");
+            console.error('Get products FAILED', error);
+            res.status(500).send("Server error");
         }
     },
     
@@ -124,7 +129,8 @@ const ProductDashboardController = {
                 </head>
                 <body>
                     <header>
-                        <button type="submit">Login</button>
+                        <button class="homeBtn" onClick="window.location.href='/dashboard'">Home</button>
+                        <button type="submit">Logout</button>
                     </header>
                     <main>
                         <section>
@@ -132,7 +138,7 @@ const ProductDashboardController = {
                                 <li>
                                     <div id="card" class="card">
                                         <div id="mainData" class="mainData">
-                                            <img src="" alt="${productById.name}">
+                                            <img src="/images/${productById.image}" alt="${productById.name}" width="200" />
                                             <div id="primaryData" class="primaryData">
                                                 ${productById.name}<br>
                                                 Categoría: ${productById.category} <br>
@@ -155,7 +161,8 @@ const ProductDashboardController = {
             res.send(html)
 
         } catch (error) {
-            console.error('Get product by id FAILED');
+            console.error('Get dashboard product by id FAILED')
+            res.status(500).send('Server error')
         };
     },
 
@@ -186,13 +193,17 @@ const ProductDashboardController = {
                     <title>Create Product</title>
                 </head>
                 <body>
+                    <header>
+                        <button class="homeBtn" onClick="window.location.href='/dashboard'">Home</button>
+                        <button type="submit">Logout</button>
+                    </header>
                     <main>
                         <p>Producto modificado corréctamente</p>
                         <ul id="productsList" class="productsList">
                                 <li>
                                     <div id="card" class="card">
                                         <div id="mainData" class="mainData">
-                                            <img src="" alt="${updatedProduct.name}">
+                                            <img src="/images/${product.image}" alt="${product.name}" width="200" />
                                             <div id="primaryData" class="primaryData">
                                                 ${updatedProduct.name}<br>
                                                 Categoría: ${updatedProduct.category} <br>
@@ -238,8 +249,12 @@ const ProductDashboardController = {
                     <title>Create Product</title>
                 </head>
                 <body>
+                    <header>
+                        <button class="homeBtn" onClick="window.location.href='/dashboard'">Home</button>
+                        <button type="submit">Logout</button>
+                    </header>
                     <main>
-                        <form action = "/dashboard" method="POST">
+                        <form action = "/dashboard" method="POST" enctype="multipart/form-data">
                             <label for="name">Artículo</label>
                             <input type="text" id="name" name="name" required>
 
@@ -247,7 +262,7 @@ const ProductDashboardController = {
                             <textarea id="description" name="description" required></textarea>
 
                             <label for="image">Imagen</label>
-                            <input type="text" id="image" name="image">
+                            <input type="file" id="image" name="image" accept="image/*">
 
                             <label for="category">Categoría</label>
                             <input type="text" id="category" name="category" required>
@@ -283,6 +298,10 @@ const ProductDashboardController = {
                     <title>Update Product</title>
                 </head>
                 <body>
+                    <header>
+                        <button class="homeBtn" onClick="window.location.href='/dashboard'">Home</button>
+                        <button type="submit">Logout</button>
+                    </header>
                     <main>
                         <form action = "/dashboard/${productId}" method="POST">
                             <input type="hidden" name="_method" value="PUT">    
@@ -344,7 +363,7 @@ const ProductController = {
                     <li>
                         <div id="card" class="card">
                             <div id="mainData" class="mainData">
-                                <img src="" alt="${product.name}">
+                                <img src="/images/${product.image}" alt="${product.name}" width="200" />
                                 <div id="primaryData" class="primaryData">
                                     ${product.name}<br>
                                     Categoría: ${product.category} <br>
@@ -394,10 +413,10 @@ const ProductController = {
                 </head>
                 <body>
                     <header>
-                        <nav>
-                            <input type="search" id="searchInput" class="searchInput" placeholder="Buscar..." />
-                        </nav>
+                        <header>
+                        <button class="homeBtn" onClick="window.location.href='/dashboard'">Home</button>
                         <button type="submit">Login</button>
+                    </header>
                     </header>
                     <main>
                         <section>
@@ -405,7 +424,7 @@ const ProductController = {
                                 <li>
                                     <div id="card" class="card">
                                         <div id="mainData" class="mainData">
-                                            <img src="" alt="${productById.name}">
+                                            <img src="/images/${productById.image}" alt="${productById.name}" width="200" />
                                             <div id="primaryData" class="primaryData">
                                                 ${productById.name}<br>
                                                 Categoría: ${productById.category} <br>
@@ -417,7 +436,7 @@ const ProductController = {
                                         <p>${productById.description}</p>
                                         <div id="cardButtons" class="cardButtons"></div>
                                     </div>
-                            </li>
+                                </li>
                             </ul>
                         </section>
                     </main>
