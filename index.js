@@ -11,6 +11,9 @@ app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+    res.redirect('/products')
+})
 app.use('/', router);
 
 dbConnection();
