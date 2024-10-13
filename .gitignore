@@ -49,7 +49,7 @@ package-lock.json
 /build/  
 /dist/  
 /out/  
-/public/  
+/public/images  
 /build-output/
 
 # Archivos de configuración de editor

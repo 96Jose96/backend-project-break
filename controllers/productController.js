@@ -47,7 +47,7 @@ const ProductDashboardController = {
                 </head>
                 <body>
                     <header>
-                        <button type="submit">Login</button>
+                        <button type="submit">Logout</button>
                     </header>
                     <main>
                         <section>
@@ -347,6 +347,7 @@ const ProductController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="/style.css">
                     <title>Product</title>
                 </head>
                 <body>
@@ -369,13 +370,9 @@ const ProductController = {
                                     Categoría: ${product.category} <br>
                                     Talla: ${product.size} <br>
                                     ID: ${product._id} <br>
-                                    ${product.price}€ IVA incluido.
                                 </div>
-                            </div>
-                            <p>${product.description}</p>
-                            <div id="cardButtons" class="cardButtons">
-                                
-                            </div>
+                            </div>                       
+                            <button class="detailsBtn" onclick="window.location.href='/products/${product._id}'">Detalles</button
                         </div>
                     </li>
                 `
@@ -409,12 +406,13 @@ const ProductController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="/details.style.css">
                     <title>Product</title>
                 </head>
                 <body>
                     <header>
                         <header>
-                        <button class="homeBtn" onClick="window.location.href='/dashboard'">Home</button>
+                        <button class="homeBtn" onClick="window.location.href='/products'">Home</button>
                         <button type="submit">Login</button>
                     </header>
                     </header>
