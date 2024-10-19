@@ -10,7 +10,7 @@ router.get('/dashboard', ProductDashboardController.getDashboardProducts);
 router.get('/dashboard/new', ProductDashboardController.newProductForm);
 router.get('/dashboard/:productId/edit', ProductDashboardController.updateProductForm);
 router.delete('/dashboard/:productId', ProductDashboardController.deleteDashboardProduct);
-router.post('/dashboard/:productId', ProductDashboardController.updateDashboardProductById);
+router.post('/dashboard/:productId', upload.single('image'), ProductDashboardController.updateDashboardProductById);
 router.get('/dashboard/:productId', ProductDashboardController.getDashboardProductById);
 router.put('/dashboard/:productId', ProductDashboardController.updateDashboardProductById);
 
