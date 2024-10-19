@@ -9,7 +9,7 @@ const ProductDashboardController = {
                 image: req.file.filename,
                 category: req.body.category,
                 size: req.body.size,
-                proce: req.body.price
+                price: req.body.price
              })
             res.send(
                 `<!DOCTYPE html>
@@ -18,11 +18,13 @@ const ProductDashboardController = {
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <meta http-equiv="refresh" content="2;url=/dashboard/new">
+                    <link rel="stylesheet" href="/css/message.style.css"> 
                     <title>Create Product</title>
                 </head>
                 <body>
                     <main>
                         <p>Producto creado corréctamente</p>
+                        <p>${newProduct.name}</p>
                     </main>
                 </body>
                 </html>`
@@ -43,11 +45,14 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" href="/style.css">
+                    <link rel="stylesheet" href="/css/style.css">
                     <title>Gestionar Productos</title>
                 </head>
                 <body>
                     <header>
+                        <form action="/dashboard/new" method="GET">
+                            <button type="submit">Crear artículo</button>
+                        </form>
                         <form action="/logout" method="POST">
                             <button type="submit">Logout</button>
                         </form>
@@ -192,6 +197,7 @@ const ProductDashboardController = {
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <meta http-equiv="refresh" content="3;url=/dashboard">
+                    <link rel="stylesheet" href="/css/details.style.css">
                     <title>Create Product</title>
                 </head>
                 <body>
@@ -248,7 +254,7 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" href="/createFormStyle.css">
+                    <link rel="stylesheet" href="/css/createFormStyle.css">
                     <title>Create Product</title>
                 </head>
                 <body>
@@ -265,7 +271,7 @@ const ProductDashboardController = {
                             <textarea id="description" name="description" required></textarea>
 
                             <label for="image">Imagen</label>
-                            <input type="file" id="image" name="image" accept="image/*">
+                            <input type="file" id="image" name="image" accept="image/*" required>
 
                             <label for="category">Categoría</label>
                             <input type="text" id="category" name="category" required>
@@ -298,7 +304,7 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" href="/createFormStyle.css">
+                    <link rel="stylesheet" href="/css/createFormStyle.css">
                     <title>Update Product</title>
                 </head>
                 <body>
@@ -351,7 +357,7 @@ const ProductController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" href="/style.css">
+                    <link rel="stylesheet" href="/css/style.css">
                     <title>Product</title>
                 </head>
                 <body>
@@ -414,7 +420,7 @@ const ProductController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" href="/details.style.css">
+                    <link rel="stylesheet" href="/css/details.style.css">
                     <title>Product</title>
                 </head>
                 <body>

@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Color de fondo */
+    color: #333; /* Color del texto */
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Altura total de la ventana */
+}
+
+main {
+    text-align: center; /* Alinea el texto al centro */
+}
+
+p {
+    font-size: 24px; /* Tamaño de fuente grande */
+    font-weight: bold; /* Negrita para el mensaje */
+    margin: 0; /* Elimina el margen */
+}
