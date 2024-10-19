@@ -10,23 +10,23 @@ header {
     background-color: #005f99;
     padding: 20px;
     display: flex;
-    justify-content: space-between; /* Espacio entre los elementos del header */
-    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .home {
     display: flex;
-    align-items: center; /* Centra el contenido del div */
+    align-items: center;
 }
 
 .users {
     display: flex;
-    align-items: center; /* Centra el contenido del div */
+    align-items: center;
 }
 
 header form {
     display: inline;
-    margin-left: 10px; /* Espacio entre los botones */
+    margin-left: 10px;
 }
 
 button {
@@ -40,42 +40,42 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Cambio de color al pasar el mouse */
+    background-color: #0056b3;
 }
 
 main {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el contenido del main */
-    align-items: center; /* Centra verticalmente el contenido */
-    height: calc(100vh - 100px); /* Ajusta la altura disponible para centrar verticalmente */
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
 }
 
 main form {
     display: flex;
-    flex-direction: column; /* Orienta los elementos del formulario en columna */
+    flex-direction: column;
     background-color: white;
-    padding: 20px; /* Espaciado interno del formulario */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 input[type="email"],
 input[type="password"] {
-    margin-bottom: 15px; /* Espacio entre los campos de entrada */
-    padding: 10px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde de los campos de entrada */
-    border-radius: 5px; /* Bordes redondeados */
-    width: 300px; /* Ancho del campo de entrada */
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #007bff; /* Color del borde al enfocar */
-    outline: none; /* Elimina el borde por defecto */
+    border-color: #007bff;
+    outline: none;
 }
 
 button[type="submit"] {
-    width: 100%; /* Botón ocupa todo el ancho del formulario */
+    width: 100%;
 }
