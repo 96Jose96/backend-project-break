@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, singInWithEmailAndPassword } from "https://www.gstatic.com/firebasesj/9.1.0/firebase-auth.js"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyB_tzEsUPnqWH_F0ZCkg69oEBX5dDTbIMg",
@@ -13,13 +14,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 
+const message = document.getElementById('loginMessage')
+
 const login = async () => {
     try {
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
 
-        const userCredential = await singInWithEmailAndPassword(auth, email, password)
+        const userCredential = await signInWithEmailAndPassword(auth, email, password)
         const idToken = await userCredential.user.getIdToken()
+        console.log(`Id token: ${idToken}`)
 
         const response = await fetch('/login', {
             method: "POST",
@@ -30,10 +34,17 @@ const login = async () => {
         })
 
         const data = await response.json()
+        console.log(data)
 
-        
+        if(data.success) {
+            window.location.href = '/dashboard'
+        } else {
+            message.textContent = 'Error en la autenticación'
+        }
 
     } catch (error) {
-
+        console.log(`Login FAILED ${error}`)
     }
 }
+
+document.getElementById('loginButton').addEventListener('click', login)

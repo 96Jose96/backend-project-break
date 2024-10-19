@@ -8,6 +8,8 @@ const serviceAccount = require('./config/serviceAccount')
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
+const cookieParser = require('cookie-parser')
+
 const viewRouter = require('./routes/viewRoutes')
 
 const apiRouter = require('./routes/apiRoutes')
@@ -17,7 +19,13 @@ const path = require('path')
 const cors = require('cors')
 const swaggerUi = require('swagger-ui-express')
 
-app.use(cors())
+
+app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true
+}))
+
+app.use(cookieParser())
 
 app.use(express.json());
 app.use(methodOverride('_method'));
