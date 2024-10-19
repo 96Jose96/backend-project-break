@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formStyle.css">
     <title>Register</title>
 </head>
 <body>
+    <header>
+        <div>
+            <button class="homeBtn" onClick="window.location.href='/products'">Home</button>
+        </div>
+    </header>
     <main>
+        <h1>Registra tu cuenta</h1>
         <form action="/register" method="POST">
-            <input type="email" name="email" placeholder="Introduce tu emai" required />
-            <input type="password" name="password" placeholder="Introduce una contraseña" />
+            <input type="email" name="email" placeholder="Introduce un email válido" required />
+            <input type="password" name="password" placeholder="Crea una contraseña" />
             <button type="submit">Enviar</button>
         </form>
     </main> 

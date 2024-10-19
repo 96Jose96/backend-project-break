@@ -5,14 +5,16 @@ const { ProductDashboardController, ProductController } = require('../controller
 const upload = require('../middlewares/middleware')
 
 
-router.post('/dashboard', upload.single('image'), ProductDashboardController.create);
-router.get('/dashboard', ProductDashboardController.getDashboardProducts);
-router.get('/dashboard/new', ProductDashboardController.newProductForm);
-router.get('/dashboard/:productId/edit', ProductDashboardController.updateProductForm);
-router.delete('/dashboard/:productId', ProductDashboardController.deleteDashboardProduct);
-router.post('/dashboard/:productId', upload.single('image'), ProductDashboardController.updateDashboardProductById);
-router.get('/dashboard/:productId', ProductDashboardController.getDashboardProductById);
-router.put('/dashboard/:productId', ProductDashboardController.updateDashboardProductById);
+const checkAuth = require('../middlewares/checkAuth')
+
+router.post('/dashboard', checkAuth, upload.single('image'), ProductDashboardController.create);
+router.get('/dashboard', checkAuth, ProductDashboardController.getDashboardProducts);
+router.get('/dashboard/new', checkAuth,  ProductDashboardController.newProductForm);
+router.get('/dashboard/:productId/edit', checkAuth, ProductDashboardController.updateProductForm);
+router.delete('/dashboard/:productId', checkAuth, ProductDashboardController.deleteDashboardProduct);
+router.post('/dashboard/:productId', checkAuth, upload.single('image'), ProductDashboardController.updateDashboardProductById);
+router.get('/dashboard/:productId', checkAuth, ProductDashboardController.getDashboardProductById);
+router.put('/dashboard/:productId', checkAuth, ProductDashboardController.updateDashboardProductById);
 
 router.get('/products', ProductController.getProducts);
 router.get('/products/:productId', ProductController.getProductById);

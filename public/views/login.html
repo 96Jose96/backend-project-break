@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formStyle.css">
     <title>Login</title>
 </head>
 <body>
+    <header>
+        <div>
+            <button class="homeBtn" onClick="window.location.href='/products'">Home</button>
+        </div>
+    </header>
     <main>
+        <h1>Introduce tus datos</h1>
         <form id="loginForm">
             <input type="email" id="email" name="email" placeholder="Introduce tu email" required />
-            <input type="password" id="password" name="password" placeholder="Introduce una contraseña" />
+            <input type="password" id="password" name="password" placeholder="Introduce tu contraseña" />
             <button type="button" id="loginButton">Login</button>
             <div id="loginMessage"></div>
         </form>

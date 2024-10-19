@@ -1,112 +1,102 @@
-/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f0f8ff;
+    color: #333;
 }
 
-/* Estilo del encabezado */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: right; /* Alinear el botón a la derecha */
+    background-color: #005f99;
+    padding: 20px;
+    text-align: right;
 }
 
-/* Estilo del botón de inicio de sesión */
-header button {
-    background-color: #007BFF; /* Color azul */
+header form {
+    display: inline;
+    margin-left: 10px;
+}
+
+button {
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-header button:hover {
-    background-color: #0056b3; /* Color azul más oscuro al pasar el mouse */
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Estilos del contenedor principal */
 main {
     padding: 20px;
 }
 
-/* Estilos para la lista de productos */
 .productsList {
-    list-style: none; /* Eliminar puntos de la lista */
+    list-style: none;
     padding: 0;
     display: flex;
-    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
-    justify-content: space-around; /* Espaciado entre los elementos */
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-/* Estilos para cada tarjeta de producto */
+.productsList li {
+    margin: 15px;
+}
+
 .card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 15px; /* Espacio entre tarjetas */
-    padding: 15px;
-    text-align: left; /* Alinear texto a la izquierda */
-    width: 400px; /* Aumentar el ancho de la tarjeta */
-    overflow: hidden; /* Para evitar que el contenido se desborde */
+    width: 450px;
+    height: 300px;
+    background-color: white;
+    transition: transform 0.2s;
 }
 
-/* Estilo para la imagen del producto */
-.card img {
-    max-width: 150px; /* Ajustar tamaño de imagen */
-    height: auto; /* Mantener proporciones de la imagen */
-    margin-right: 10px; /* Espacio entre imagen y texto */
+.card:hover {
+    transform: scale(1.05);
 }
 
-/* Estilo para los datos principales del producto */
+img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
 .mainData {
-    display: flex; /* Usar flexbox para alinear imagen y datos */
-    align-items: center; /* Alinear verticalmente */
-    margin-bottom: 10px; /* Espacio abajo antes del botón */
+    padding: 15px;
+    display: flex;
+    flex: 1;
 }
 
-/* Estilo para los datos del producto */
 .primaryData {
-    flex-grow: 1; /* Permitir que el contenedor de texto crezca */
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+    line-height: 2;
 }
 
-/* Estilo para el botón de detalles */
 .detailsBtn {
-    background-color: #28a745; /* Color verde */
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px; /* Espacio arriba del botón */
-    display: block; /* Hacer el botón un bloque para centrarlo */
-    width: 100%; /* Hacer el botón ocupar todo el ancho */
-    transition: background-color 0.3s; /* Animación de cambio de color */
+    margin: 10px auto;
+    width: 80%;
+    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
 .detailsBtn:hover {
-    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+    background-color: #0056b3;
 }
-
-/* Asegurarse que el texto no se salga de la tarjeta */
-.primaryData {
-    white-space: nowrap; /* Evitar que el texto se rompa en múltiples líneas */
-    overflow: hidden; /* Ocultar el texto que sobrepase el área */
-    text-overflow: ellipsis; /* Mostrar "..." al final si el texto es demasiado largo */
-}
-
-/* Espacio extra para los IDs */
-.primaryData span {
-    display: block; /* Asegurar que el ID ocupe una línea separada */
-    margin-top: 5px; /* Espacio arriba del ID */
-    font-size: 12px; /* Tamaño de fuente más pequeño para el ID */
-    color: #888; /* Color más claro para el ID */
-}
-
-

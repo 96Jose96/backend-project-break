@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const router = require('./routes/productRoutes');
-
 const admin = require('firebase-admin')
 const serviceAccount = require('./config/serviceAccount')
 admin.initializeApp({
@@ -10,16 +8,17 @@ admin.initializeApp({
 })
 const cookieParser = require('cookie-parser')
 
+const router = require('./routes/productRoutes');
 const viewRouter = require('./routes/viewRoutes')
-
 const apiRouter = require('./routes/apiRoutes')
+
 const dbConnection = require('./config/db');
 const methodOverride = require('method-override');
 const path = require('path')
 const cors = require('cors')
 const swaggerUi = require('swagger-ui-express')
 
-
+app.use(cors())
 app.use(cors({
     origin: 'http://localhost:8080',
     credentials: true

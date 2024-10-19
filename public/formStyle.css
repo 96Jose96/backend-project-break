@@ -52,72 +52,30 @@ main {
     height: calc(100vh - 100px); /* Ajusta la altura disponible para centrar verticalmente */
 }
 
-.productsList {
-    list-style: none;
-    padding: 0;
+main form {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.productsList li {
-    margin: 15px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 600px;
-    height: 400px;
+    flex-direction: column; /* Orienta los elementos del formulario en columna */
     background-color: white;
-    transition: transform 0.2s;
+    padding: 20px; /* Espaciado interno del formulario */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
 }
 
-.card:hover {
-    transform: scale(1.05);
+input[type="email"],
+input[type="password"] {
+    margin-bottom: 15px; /* Espacio entre los campos de entrada */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde de los campos de entrada */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 300px; /* Ancho del campo de entrada */
 }
 
-img {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin-right: 15px;
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Color del borde al enfocar */
+    outline: none; /* Elimina el borde por defecto */
 }
 
-.mainData {
-    padding: 15px;
-    display: flex;
-    flex: 1;
-}
-
-.primaryData {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 8px;
-    flex: 1;
-    line-height: 2;
-}
-
-div p {
-    text-align: center;
-}
-
-.detailsBtn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px auto;
-    width: 80%;
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-.detailsBtn:hover {
-    background-color: #0056b3;
+button[type="submit"] {
+    width: 100%; /* Botón ocupa todo el ancho del formulario */
 }

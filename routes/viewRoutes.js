@@ -6,6 +6,7 @@ const auth = admin.auth()
 
 
 
+
 viewRouter.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/views', 'register.html'))
 })
@@ -41,7 +42,8 @@ viewRouter.post ('/login', async (req, res) => {
 })
 
 viewRouter.post('/logout', (req, res) => {
-    
+    res.clearCookie('token')
+    res.redirect('/products')
 })
 
 module.exports = viewRouter

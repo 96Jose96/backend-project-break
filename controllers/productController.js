@@ -47,7 +47,9 @@ const ProductDashboardController = {
                 </head>
                 <body>
                     <header>
-                        <button type="submit">Logout</button>
+                        <form action="/logout" method="POST">
+                            <button type="submit">Logout</button>
+                        </form>
                     </header>
                     <main>
                         <section>
@@ -352,7 +354,12 @@ const ProductController = {
                 </head>
                 <body>
                     <header>
-                        <button type="submit">Login</button>
+                        <form action="/register" method="GET">
+                            <button type="submit">Register</button>
+                        </form>
+                        <form action="/login" method="GET">
+                            <button type="submit">Login</button>
+                        </form>
                     </header>
                     <main>
                         <section>
@@ -369,7 +376,6 @@ const ProductController = {
                                     ${product.name}<br>
                                     Categoría: ${product.category} <br>
                                     Talla: ${product.size} <br>
-                                    ID: ${product._id} <br>
                                 </div>
                             </div>                       
                             <button class="detailsBtn" onclick="window.location.href='/products/${product._id}'">Detalles</button
@@ -411,10 +417,17 @@ const ProductController = {
                 </head>
                 <body>
                     <header>
-                        <header>
-                        <button class="homeBtn" onClick="window.location.href='/products'">Home</button>
-                        <button type="submit">Login</button>
-                    </header>
+                        <div class="home">
+                            <button class="homeBtn" onClick="window.location.href='/products'">Home</button>
+                        </div>
+                        <div class="users">
+                            <form action="/register" method="GET">
+                                <button type="submit">Register</button>
+                            </form>
+                            <form action="/login" method="GET">
+                                <button type="submit">Login</button>
+                            </form>
+                        </div>
                     </header>
                     <main>
                         <section>
