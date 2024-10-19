@@ -43,6 +43,7 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="/style.css">
                     <title>Gestionar Productos</title>
                 </head>
                 <body>
@@ -177,7 +178,6 @@ const ProductDashboardController = {
                 {
                     name,
                     description,
-                    image,
                     category,
                     size,
                     price
@@ -205,7 +205,7 @@ const ProductDashboardController = {
                                 <li>
                                     <div id="card" class="card">
                                         <div id="mainData" class="mainData">
-                                            <img src="/images/${product.image}" alt="${product.name}" width="200" />
+                                            <img src="/images/${updatedProduct.image}" alt="${updatedProduct.name}" width="200" />
                                             <div id="primaryData" class="primaryData">
                                                 ${updatedProduct.name}<br>
                                                 Categoría: ${updatedProduct.category} <br>
@@ -248,6 +248,7 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="/createFormStyle.css">
                     <title>Create Product</title>
                 </head>
                 <body>
@@ -297,6 +298,7 @@ const ProductDashboardController = {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="/createFormStyle.css">
                     <title>Update Product</title>
                 </head>
                 <body>
@@ -315,7 +317,7 @@ const ProductDashboardController = {
                             <textarea id="description" name="description">${updateProduct.description}</textarea>
 
                             <label for="image">Imagen</label>
-                            <input type="text" id="image" name="image" value="${updateProduct.image}">
+                            <input type="file" id="image" name="image">
 
                             <label for="category">Categoría</label>
                             <input type="text" id="category" name="category" value="${updateProduct.category}">

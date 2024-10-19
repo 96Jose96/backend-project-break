@@ -53,8 +53,8 @@ main {
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 450px;
-    height: 300px;
+    width: fit-content;
+    height: fit-content;
     background-color: white;
     transition: transform 0.2s;
 }
@@ -99,4 +99,27 @@ img {
 
 .detailsBtn:hover {
     background-color: #0056b3;
+}
+
+.cardButtons {
+    display: flex; /* Usar flex para alinear los botones */
+    justify-content: space-around; /* Espacio entre los botones */
+    margin-top: 10px; /* Espacio superior para los botones */
+    padding: 10px; /* Espacio interno para los botones */
+}
+
+.cardButtons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Hacer que los botones ocupen el mismo espacio */
+    margin: 0 5px; /* Espacio lateral entre los botones */
+}
+
+.cardButtons button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el mouse */
 }

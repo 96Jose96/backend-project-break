@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+header {
+    background-color: #005f99;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos del header */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.home {
+    display: flex;
+    align-items: center; /* Centra el contenido del div */
+}
+
+.users {
+    display: flex;
+    align-items: center; /* Centra el contenido del div */
+}
+
+header form {
+    display: inline;
+    margin-left: 10px; /* Espacio entre los botones */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el mouse */
+}
+
+/* Estilos del main */
+main {
+    padding: 20px; /* Relleno del main */
+    display: flex; /* Flexbox para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    flex-direction: column; /* Colocar los elementos en columna */
+}
+
+form {
+    background-color: white; /* Color de fondo del formulario */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
+    padding: 20px; /* Relleno del formulario */
+    width: 100%;
+    max-width: 600px; /* Ancho máximo del formulario */
+}
+
+/* Estilos de los elementos del formulario */
+label {
+    margin-top: 10px; /* Espacio superior para las etiquetas */
+    display: block; /* Muestra las etiquetas como bloques */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="file"],
+textarea {
+    width: 95%; /* Ancho completo */
+    padding: 10px; /* Relleno interno */
+    margin-top: 5px; /* Espacio superior */
+    margin-bottom: 15px; /* Espacio inferior */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px;
+    resize: none;
+}
+
+/* Estilos del botón de enviar */
+button[type="submit"] {
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Relleno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
